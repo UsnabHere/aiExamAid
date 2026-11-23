@@ -1,0 +1,21 @@
+import re
+
+positive = {"good", "great", "excellent", "happy", "love", "best"}
+negative = {"bad", "poor", "worst", "sad", "hate", "awful"}
+
+def sentiment(text):
+    words = re.findall(r"[a-z]+", text.lower())
+
+    pos = sum(word in positive for word in words)
+    neg = sum(word in negative for word in words)
+
+    if pos > neg:
+        return "Positive"
+    elif neg > pos:
+        return "Negative"
+    else:
+        return "Neutral"
+
+review = input("Enter a review: ")
+
+print("Sentiment:", sentiment(review))
