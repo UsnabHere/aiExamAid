@@ -1,0 +1,23 @@
+def f(x):
+    return -(x - 3)**2 + 9
+
+def hill_climbing(start):
+    current = start
+
+    while True:
+        left = current - 1
+        right = current + 1
+
+        best = max([current, left, right], key=f)
+
+        if f(best) <= f(current):
+            break
+
+        current = best
+
+    return current
+
+result = hill_climbing(0)
+
+print("Best x:", result)
+print("Maximum Value:", f(result))
