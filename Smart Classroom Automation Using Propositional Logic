@@ -1,0 +1,12 @@
+occupied = True
+dark = True
+hot = True
+humid = False
+
+light = occupied and dark
+fan = occupied and hot
+ac = occupied and hot and humid
+
+print("Light:", "ON" if light else "OFF")
+print("Fan:", "ON" if fan else "OFF")
+print("AC:", "ON" if ac else "OFF")
