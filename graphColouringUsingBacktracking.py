@@ -1,3 +1,5 @@
+V = 4
+
 graph = [
     [0, 1, 1, 1],
     [1, 0, 1, 0],
@@ -5,31 +7,38 @@ graph = [
     [1, 0, 1, 0]
 ]
 
-n = 4
-colors = [0] * n
+colors = ['Red', 'Green', 'Blue']
+result = [None] * V
 
-def safe(node, color):
-    for i in range(n):
-        if graph[node][i] == 1 and colors[i] == color:
+def is_safe(vertex, color):
+    for i in range(V):
+        if graph[vertex][i] == 1 and result[i] == color:
             return False
+
     return True
 
-def solve(node):
-    if node == n:
+def graph_coloring(vertex):
+    if vertex == V:
         return True
 
-    for color in range(1, 4):
-        if safe(node, color):
-            colors[node] = color
+    for color in colors:
+        if is_safe(vertex, color):
+            result[vertex] = color
 
-            if solve(node + 1):
+            if graph_coloring(vertex + 1):
                 return True
 
-            colors[node] = 0
+            result[vertex] = None
 
     return False
 
-if solve(0):
-    print("Colours:", colors)
+if graph_coloring(0):
+    print("Graph Coloring Solution:")
+
+    for i in range(V):
+        print("Vertex", i, ":", result[i])
+
 else:
-    print("No solution")
+    print("No solution exists.")
+
+   
